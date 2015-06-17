@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=ZYoutubeDL
+Comment=Téléchargeur vidéo Youtube
+GenericName=ZYoutubeDL
+Exec=/usr/bin/zyoutubedl
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=video
+Categories=System;GTK;
+StartupWMClass=ZYoutubeDL
+StartupNotify=true
+Name[fr]=ZYoutubeDL
+Keywords=ZYoutubeDL;youtube;download;
+Name[fr_FR]=ZYoutubeDL
