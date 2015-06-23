@@ -39,16 +39,27 @@ function refreshForms() {
         if [[ "$BACKUP" != "" ]]; then
             zenity --question --title="ZYoutubeDL" --text="Souhaitez vous lancer le téléchargement maintenant?"
             if [[ $? -eq 0 ]]; then
-                
+                dir=$HOME
+                dir=`zenity --file-selection --directory --title="ZYoutubeDL" --text="Selectionnez le répertoire où les vidéos seront sauvegardés."`
+                if [[ $? != 0 ]]; then
+                    dir=$HOME
+                fi
+                olddir=$PWD
+                cd $dir
                 echo $BACKUP | sed 's/|/\n/g' | while read link; do
                     if [[ "$link" != "" ]]; then
+                        
                         xterm -e youtube-dl "$link"
                     fi
                 done
+                cd $olddir
+                BACKUP="";
+                refreshForms
                 exit 0
             else
                 zenity --question --title="ZYoutubeDL" --text="Souhaitez vous quitter ZYoutubeDL maintenant?"
                 if [[ $? != 0 ]]; then
+                    BACKUP="";
                     refreshForms
                 else 
                     exit 0
@@ -57,6 +68,7 @@ function refreshForms() {
         else 
             zenity --question --title="ZYoutubeDL" --text="Souhaitez vous quitter ZYoutubeDL maintenant?"
             if [[ $? != 0 ]]; then
+                BACKUP="";
                 refreshForms
             else 
                 exit 0
