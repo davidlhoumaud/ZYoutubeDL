@@ -21,6 +21,8 @@ neutre='\e[0;m'
 BACKUP=""
 if [[ ! -f /usr/bin/youtube-dl ]]; then
     xterm -e "echo 'Installation de Youtube-DL'; sudo apt-get install youtube-dl python-pip;echo '\n\nMise à jour de Youtube-DL'; sudo youtube-dl -U; sudo pip install --upgrade youtube_dl"
+else
+    xterm -e "echo 'Mise à jour de Youtube-DL'; sudo youtube-dl -U; sudo pip install --upgrade youtube_dl"
 fi
 
 function refreshForms() {
